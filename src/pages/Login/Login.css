@@ -1,0 +1,143 @@
+.auth-page {
+    display: flex;
+    min-height: 100vh;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(135deg, #667eea, #764ba2);
+}
+
+.auth-card {
+    width: 900px;
+    min-height: 500px;
+    background-color: #fff;
+    border-radius: 16px;
+    display: flex;
+    overflow: hidden;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+    /* align-items: center; */
+
+}
+
+.auth-left {
+    flex: 1;
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 50px;
+}
+
+.auth-title {
+    font-size: 36px;
+    margin-bottom: 15px;
+}
+
+.auth-subtitle {
+    font-size: 16px;
+    opacity: 0.9;
+}
+
+.auth-right {
+    flex: 1;
+    padding: 50px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    border-left: 1px solid #eee;
+}
+
+.auth-right-title {
+    font-size: 28px;
+    margin-bottom: 30px;
+}
+
+.login-form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.input-field {
+    padding: 12px 15px;
+    font-size: 15px;
+    border-radius: 8px;
+    border: 1px solid #ddd;
+    outline: none;
+    transition: 0.3s;
+}
+
+.input-field:focus {
+    border-color: #667eea;
+    box-shadow: 0 0 0 2px rgba(102, 126, 234, 0.2);
+}
+
+.button {
+    margin-top: 10px;
+    padding: 12px;
+    font-size: 16px;
+    border: none;
+    border-radius: 8px;
+    background: #667eea;
+    color: white;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.button:hover {
+    background: #5a67d8;
+}
+
+@media (max-width: 900px) {
+    .auth-card {
+        width: 90%;
+        height: auto;
+        flex-direction: column;
+    }
+
+    .auth-left,
+    .auth-right {
+        padding: 40px;
+    }
+
+    .auth-title {
+        font-size: 30px;
+    }
+}
+
+@media (max-width: 600px) {
+
+    .auth-page {
+        padding: 20px;
+    }
+
+    .auth-card {
+        width: 100%;
+        border-radius: 12px;
+    }
+
+    /* Hide left section on mobile */
+    .auth-left {
+        display: none;
+    }
+
+    .auth-right {
+        padding: 30px 20px;
+    }
+
+    .auth-right-title {
+        font-size: 24px;
+        text-align: center;
+    }
+
+    .input-field {
+        font-size: 14px;
+        padding: 11px;
+    }
+
+    .button {
+        font-size: 15px;
+        padding: 11px;
+    }
+}
