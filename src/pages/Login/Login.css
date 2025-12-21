@@ -89,6 +89,32 @@
     background: #5a67d8;
 }
 
+.error-text {
+    width: 100%;
+    padding: 10px 14px;
+    margin-bottom: 14px;
+
+    background-color: #ffecec;
+    color: #d32f2f;
+
+    border: 1px solid #f5c2c7;
+    border-radius: 8px;
+
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 1.4;
+
+    display: flex;
+    align-items: center;
+    gap: 6px;
+
+    word-break: break-word;
+}
+
+.error-text {
+    animation: fadeIn 0.3s ease-in-out;
+}
+
 @media (max-width: 900px) {
     .auth-card {
         width: 90%;
@@ -103,6 +129,12 @@
 
     .auth-title {
         font-size: 30px;
+    }
+
+    .error-text {
+        font-size: 13px;
+        padding: 9px 12px;
+        border-radius: 6px;
     }
 }
 
@@ -139,5 +171,10 @@
     .button {
         font-size: 15px;
         padding: 11px;
+    }
+
+    .error-text {
+        font-size: 12.5px;
+        padding: 8px 10px;
     }
 }

@@ -1,0 +1,93 @@
+import * as actionTypes from './actionTypes';
+import axios from 'axios';
+
+// Signup Actions
+
+export const signupRequest = () => {
+    return {
+        type: actionTypes.SIGNUP_REQUEST,
+    }
+}
+
+export const signupSuccess = (user) => {
+    return {
+        type: actionTypes.SIGNUP_SUCCESS,
+        payload: user,
+    }
+}
+
+export const signupFailure = (error) => {
+    return {
+        type: actionTypes.SIGNUP_FAILURE,
+        payload: error,
+    }
+}
+const SIGNUP_API_URL = 'http://127.0.0.1:8000/api/accounts/register/';
+
+export const fetchSignupRequest = (userData) => async (dispatch) => {
+    dispatch(signupRequest());
+    // Add logic here to perform the actual signup request
+    try {
+        const response = await axios.post(SIGNUP_API_URL, userData);
+        dispatch(signupSuccess(response.data));
+    } catch (error) {
+        console.log("Error during signup:", error.response.data)
+        let message = '';
+        let count = 1;
+        const data = error.response?.data;
+        if (data && typeof data === 'object') {
+            Object.keys(data).forEach((key) => {
+                data[key].forEach((msg) => {
+                    message += `${count}: ${msg} \n`;
+                    count++;
+                });
+            });
+        } else {
+            message = 'An unknown error occurred.';
+        }
+        dispatch(signupFailure(message))
+    }
+
+
+}
+
+// Login Actions
+export const loginRequest = () => {
+    return {
+        type: actionTypes.LOGIN_REQUEST,
+    }
+}
+
+export const loginSuccess = (user) => {
+    return {
+        type: actionTypes.LOGIN_SUCCESS,
+        payload: user,
+    }
+}
+
+export const loginFailure = (error) => {
+    return {
+        type: actionTypes.LOGIN_FAILURE,
+        payload: error,
+    }
+}
+
+const LOGIN_API_URL = 'http://127.0.0.1:8000/api/accounts/login/';
+
+export const fetchLoginRequest = (userData) => async (dispatch) => {
+    dispatch(loginRequest());
+    // Add logic here to perform the actual login request
+
+    try {
+        const response = await axios.post(LOGIN_API_URL, userData);
+        dispatch(loginSuccess(response.data));
+        console.log("Login successful:", response.data);
+
+    } catch (error) {
+        dispatch(loginFailure(
+            error.response?.data || error.message
+
+        ))
+    }
+
+}
