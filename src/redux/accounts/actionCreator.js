@@ -91,3 +91,41 @@ export const fetchLoginRequest = (userData) => async (dispatch) => {
     }
 
 }
+
+const getProfileRequest = () => {
+    return {
+        type: actionTypes.GET_PROFILE_REQUEST,
+    }
+}
+
+const getProfileRequestFailure = (error) => {
+    return {
+        type: actionTypes.GET_PROFILE_FAILED,
+        payload: error,
+
+    }
+}
+
+const getProfileRequestSuccess = (profile) => {
+    return {
+        type: actionTypes.GET_PROFILE_SUCCESS,
+        payload: profile,
+    }
+}
+
+const fetchProfileAPIURL = 'http://127.0.0.1:8000/api/accounts/profile/';
+
+export const fetchProfileRequest = (token) => async (dispatch) => {
+    dispatch(getProfileRequest());
+    try {
+        const response = await axios.get(fetchProfileAPIURL, {
+            headers: {
+                Authorization: `Bearer ${token}`
+            },
+
+        });
+        dispatch(getProfileRequestSuccess(response.data));
+    } catch (error) {
+        dispatch(getProfileRequestFailure(error.response?.data || error.message));
+    }
+}

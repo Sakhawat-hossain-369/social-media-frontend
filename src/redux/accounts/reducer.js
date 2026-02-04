@@ -10,6 +10,7 @@ const initialState = {
     accessToken: null,
     isAuthenticated: false,
     signupSuccess: false,
+    userProfile: null,
 }
 
 const accountsReducer = (state = initialState, action) => {
@@ -72,4 +73,34 @@ const accountsReducer = (state = initialState, action) => {
     }
 }
 
+const profileReducer = (state = initialState, action) => {
+    switch (action.type) {
+        case actionTypes.GET_PROFILE_REQUEST:
+            return {
+                ...state,
+                loading: true,
+                error: null
+            }
+
+        case actionTypes.GET_PROFILE_FAILED:
+            return {
+                ...state,
+                loading: false,
+                error: action.payload,
+            }
+        case actionTypes.GET_PROFILE_SUCCESS:
+            return {
+                ...state,
+                loading: false,
+                userProfile: action.payload,
+
+            }
+
+        default:
+            return state;
+
+    }
+}
+
 export default accountsReducer;
+export { profileReducer };
