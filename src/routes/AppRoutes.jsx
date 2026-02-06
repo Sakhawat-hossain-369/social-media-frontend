@@ -8,6 +8,7 @@ import Notifications from '../pages/Notification'
 import FollowingList from '../pages/FollowingList'
 import FollowerLIst from '../pages/FollowerList'
 import Profile from '../pages/Profile'
+import ProtectedRoute from './protectedRoute'
 
 
 const AppRoutes = () => {
@@ -21,12 +22,48 @@ const AppRoutes = () => {
 
 
             {/* Social pages */}
-            <Route path='/home' element={<Home />} />
-            <Route path='/messages' element={<Messages />} />
-            <Route path='/notifications' element={<Notifications />} />
-            <Route path='/followerList' element={<FollowerLIst />} />
-            <Route path='/followingList' element={<FollowingList />} />
-            <Route path='profile' element={<Profile />} />
+            <Route path='/home'
+                element={
+                    <ProtectedRoute>
+                        <Home />
+                    </ProtectedRoute>
+
+                } />
+            <Route path='/messages'
+                element={
+                    <ProtectedRoute>
+                        <Messages />
+                    </ProtectedRoute>
+
+                } />
+            <Route path='/notifications'
+                element={
+                    <ProtectedRoute>
+                        <Notifications />
+                    </ProtectedRoute>
+
+                } />
+            <Route path='/followerList'
+                element={
+                    <ProtectedRoute>
+                        <FollowerLIst />
+                    </ProtectedRoute>
+
+                } />
+            <Route path='/followingList'
+                element={
+                    <ProtectedRoute>
+                        <FollowingList />
+                    </ProtectedRoute>
+
+                } />
+            <Route path='profile'
+                element={
+                    <ProtectedRoute>
+                        <Profile />
+                    </ProtectedRoute>
+
+                } />
         </Routes>
 
 

@@ -80,6 +80,8 @@ export const fetchLoginRequest = (userData) => async (dispatch) => {
 
     try {
         const response = await axios.post(LOGIN_API_URL, userData);
+        localStorage.setItem('accessToken', response.data.access);
+        localStorage.setItem('refreshToken', response.data.refresh);
         dispatch(loginSuccess(response.data));
         console.log("Login successful:", response.data);
 
